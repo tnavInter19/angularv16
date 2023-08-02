@@ -1,0 +1,23 @@
+<!-- autocomplete.component.html -->
+<div class="relative">
+ <input
+   type="text"
+   class="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+   (input)="filterOptions($event)"
+   [(ngModel)]="searchTerm"
+   (focus)="showOptions = true"
+   (blur)="onBlur()"
+ />
+ <ul
+   *ngIf="showOptions && filteredOptions.length > 0"
+   class="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded shadow-md"
+ >
+   <li
+     *ngFor="let option of filteredOptions"
+     class="px-3 py-2 hover:bg-blue-100 cursor-pointer"
+     (click)="onOptionSelected($event, option)"
+   >
+     {{ option }}
+   </li>
+ </ul>
+</div>
