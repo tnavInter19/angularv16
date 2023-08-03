@@ -1,0 +1,56 @@
+<div class="mx-5">
+<div class="accordion">
+ <ng-container *ngFor="let item of accordionItems">
+   <button
+     (click)="toggleAccordionItem(item)"
+     class="accordion-header mt-1 mb-1 bg-gray-200 hover:bg-gray-300 px-4 py-2 w-full text-left flex justify-between items-center"
+   >
+     <span class="flex-grow">{{ item.header }}</span>
+     <svg
+       class="arrow-icon w-4 h-4 transform transition-transform"
+       viewBox="0 0 20 20"
+       fill="none"
+       stroke="currentColor"
+       stroke-width="2"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+     >
+       <!-- Your arrow icon SVG here -->
+       <!-- For example, you can use the following triangle icon -->
+       <path d="M5 10l7-7 7 7" *ngIf="!item.expanded" />
+       <path d="M5 10l7 7 7-7" *ngIf="item.expanded" />
+     </svg>
+   </button>
+   <div
+     [class.accordion-content]="true"
+     [class.border-l-2.border-gray-200.pl-4]="true"
+     [class.hidden.md:block]="!item.expanded"
+     [class.block.md:hidden]="item.expanded"
+   >
+     <!-- Table Example -->
+     <table class="table-auto border-collapse border w-full mt-2">
+       <thead>
+         <tr>
+           <th class="border px-4 py-2">Column 1</th>
+           <th class="border px-4 py-2">Column 2</th>
+           <th class="border px-4 py-2">Column 3</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td class="border px-4 py-2">Row 1, Column 1</td>
+           <td class="border px-4 py-2">Row 1, Column 2</td>
+           <td class="border px-4 py-2">Row 1, Column 3</td>
+         </tr>
+         <tr>
+           <td class="border px-4 py-2">Row 2, Column 1</td>
+           <td class="border px-4 py-2">Row 2, Column 2</td>
+           <td class="border px-4 py-2">Row 2, Column 3</td>
+         </tr>
+         <!-- Add more rows as needed -->
+       </tbody>
+     </table>
+   </div>
+ </ng-container>
+</div>
+</div>
