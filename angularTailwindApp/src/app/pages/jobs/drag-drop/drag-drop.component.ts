@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'pmo-drag-drop',
   templateUrl: './drag-drop.component.html',
-  styleUrls: ['./drag-drop.component.less']
+  styleUrls: ['./drag-drop.component.scss']
 })
 export class DragDropComponent {
  items = [

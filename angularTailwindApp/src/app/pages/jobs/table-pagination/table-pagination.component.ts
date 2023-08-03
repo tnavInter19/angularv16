@@ -9,7 +9,7 @@ interface Person {
 @Component({
   selector: 'pmo-table-pagination',
   templateUrl: './table-pagination.component.html',
-  styleUrls: ['./table-pagination.component.less'],
+  styleUrls: ['./table-pagination.component.scss'],
 })
 export class TablePaginationComponent {
   people: Person[] = [];

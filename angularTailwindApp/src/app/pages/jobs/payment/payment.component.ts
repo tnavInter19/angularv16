@@ -8,7 +8,7 @@ export interface DialogData {
 @Component({
   selector: 'pmo-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.less']
+  styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
 

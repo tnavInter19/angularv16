@@ -8,7 +8,7 @@ interface Step {
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
-  styleUrls: ['./stepper.component.less'],
+  styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
  @ContentChildren(TemplateRef) stepsContent!: QueryList<TemplateRef<any>>;

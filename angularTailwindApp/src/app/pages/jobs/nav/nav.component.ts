@@ -4,7 +4,7 @@ import { Component, HostListener } from '@angular/core';
 @Component({
   selector: 'pmo-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.less'],
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
  isOpen = false;

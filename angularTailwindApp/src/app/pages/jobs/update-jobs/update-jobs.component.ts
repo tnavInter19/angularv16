@@ -7,7 +7,7 @@ import { JobsService } from '../jobs.service';
 @Component({
   selector: 'pmo-update-jobs',
   templateUrl: './update-jobs.component.html',
-  styleUrls: ['./update-jobs.component.less']
+  styleUrls: ['./update-jobs.component.scss']
 })
 export class UpdateJobsComponent implements OnInit {
  form!: UntypedFormGroup;

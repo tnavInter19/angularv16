@@ -7,7 +7,7 @@ import {Dialog, DIALOG_DATA, DialogRef} from '@angular/cdk/dialog';
 @Component({
   selector: 'pmo-jobs',
   templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.less']
+  styleUrls: ['./jobs.component.scss']
 })
 export class JobsComponent implements OnInit {
 

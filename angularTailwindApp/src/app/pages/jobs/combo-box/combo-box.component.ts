@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'pmo-combo-box',
   templateUrl: './combo-box.component.html',
-  styleUrls: ['./combo-box.component.less']
+  styleUrls: ['./combo-box.component.scss']
 })
 export class ComboBoxComponent implements OnInit {
  @Input() options: string[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];

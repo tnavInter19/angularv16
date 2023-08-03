@@ -21,7 +21,7 @@ interface Desc {
 @Component({
   selector: 'pmo-step-form',
   templateUrl: './step-form.component.html',
-  styleUrls: ['./step-form.component.less'],
+  styleUrls: ['./step-form.component.scss'],
 })
 export class StepFormComponent {
   @ContentChildren(TemplateRef) stepsContent!: QueryList<TemplateRef<any>>;
