@@ -1,0 +1,55 @@
+<div class="flex justify-center mt-8">
+ <div class="w-full max-w-xl">
+   <div class="bg-white shadow-md rounded-lg">
+     <div class="p-6">
+       <div class="flex items-center justify-between">
+         <div class="text-lg font-medium">Stepper</div>
+         <div class="text-sm text-gray-500">Step {{ currentStep + 1 }} of {{ totalSteps }}</div>
+       </div>
+       <div class="flex flex-row mt-8"  [ngClass]="{
+        'flex-row': 'horizontal' === orientation,
+        'flex-col': 'vertical' === orientation
+      }">
+         <ng-container *ngFor="let step of steps; let i = index">
+           <div class="flex items-center">
+             <div
+               class="flex items-center justify-center w-8 h-8 rounded-full border-2"
+               [ngClass]="{
+                 'border-blue-500': i === currentStep,
+                 'border-gray-300': i !== currentStep
+               }"
+             >
+               <div *ngIf="i === currentStep" class="text-blue-500">{{ i + 1 }}</div>
+             </div>
+             <div class="flex-1 ml-4 font-medium" [ngClass]="{
+              'text-blue-500': i === currentStep
+            }">{{ step.title }}</div>
+           </div>
+         </ng-container>
+      
+       </div>
+       <div class="mt-4">
+        <ng-container *ngIf="currentStep >= 0 && currentStep < totalSteps">
+          <ng-container [ngTemplateOutlet]="steps[currentStep].content"></ng-container>
+        </ng-container>
+      </div>
+       <div class="flex justify-between mt-8">
+         <button
+           class="px-4 py-2 text-sm font-semibold text-gray-600 bg-gray-200 rounded"
+           [disabled]="currentStep === 0"
+           (click)="previousStep()"
+         >
+           Previous
+         </button>
+         <button
+           class="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded"
+           [disabled]="currentStep === totalSteps - 1"
+           (click)="nextStep()"
+         >
+           Next
+         </button>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>

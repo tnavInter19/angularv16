@@ -1,0 +1,50 @@
+
+<div class="p-4">
+ <table class="w-full border-collapse">
+   <thead>
+     <tr>
+       <th class="px-4 py-2 bg-gray-200 text-left">ID</th>
+       <th class="px-4 py-2 bg-gray-200 text-left">Name</th>
+       <th class="px-4 py-2 bg-gray-200 text-left">Age</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor="let person of paginatedPeople">
+       <td class="border px-4 py-2">{{ person.id }}</td>
+       <td class="border px-4 py-2">{{ person.name }}</td>
+       <td class="border px-4 py-2">{{ person.age }}</td>
+     </tr>
+   </tbody>
+ </table>
+
+ <div class="flex justify-center mt-4">
+  <button
+    [disabled]="currentPage === 1"
+    (click)="goToPage(currentPage - 1)"
+    class="px-3 py-2 mr-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+  >
+    Previous
+  </button>
+  <button
+    [disabled]="currentPage === totalPages"
+    (click)="goToPage(currentPage + 1)"
+    class="px-3 py-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+  >
+    Next
+  </button>
+</div>
+
+<div class="flex items-center justify-center mt-4">
+  <label class="mr-2">Items per page:</label>
+  <select [(ngModel)]="itemsPerPage" class="py-2 px-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <option [ngValue]="5">5</option>
+    <option [ngValue]="10">10</option>
+    <option [ngValue]="20">20</option>
+    <option [ngValue]="50">50</option>
+  </select>
+</div>
+</div>
+
+
+
+
