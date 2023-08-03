@@ -18,6 +18,7 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { StepperFormComponent } from './stepper-form/stepper-form.component';
 import { StepFormComponent } from './stepper-form/step-form/step-form.component';
+import { AccordianComponent } from './accordian/accordian.component';
 
 const routes: Routes = [
   { path: '', component: JobsComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'stepper', component: StepperPageComponent },
   { path: 'table', component: TablePaginationComponent },
   { path: 'stepform', component: StepperFormComponent },
+  { path: 'accordian', component: AccordianComponent },
   { path: ':id', component: UpdateJobsComponent },
 
 ];
@@ -46,6 +48,7 @@ const routes: Routes = [
     TablePaginationComponent,
     StepperFormComponent,
     StepFormComponent,
+    AccordianComponent,
   ],
   imports: [
     CommonModule,

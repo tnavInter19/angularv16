@@ -1,0 +1,45 @@
+<!-- accordion.component.html -->
+<div class="m-4">
+
+<div class="space-y-4">
+ <div *ngFor="let formGroup of formGroups; let i = index" [formGroup]="formGroup">
+   <div class="border rounded-lg flex justify-between">
+     <button (click)="toggleAccordion(i)" class="w-full text-left px-4 py-2 bg-gray-200 hover:bg-gray-300">
+       Form Group {{ i + 1 }}
+     </button>
+     <button *ngIf="formGroups.length > 1" (click)="deleteFormGroup(i)" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white">
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+         class="h-6 w-6">
+         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+           d="M6 18L18 6M6 6l12 12"></path>
+       </svg>
+     </button>
+   </div>
+   <div *ngIf="isOpen(i)" class="p-4">
+     <div class="space-y-2">
+       <div class="flex flex-col">
+         <label class="text-sm font-bold" for="name">Name:</label>
+         <input class="rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200" type="text"
+           id="name" formControlName="name" required>
+       </div>
+       <div class="flex flex-col">
+         <label class="text-sm font-bold" for="email">Email:</label>
+         <input class="rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200" type="email"
+           id="email" formControlName="email" required>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="flex justify-between">
+ <button (click)="addFormGroup()"
+   class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg">
+   Add Form Group
+ </button>
+ <button (click)="onSubmitAll()" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">
+  Submit All Forms
+</button>
+</div>
+</div>
+
+
+</div>
