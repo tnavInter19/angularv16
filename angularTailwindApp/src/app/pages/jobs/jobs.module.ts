@@ -20,6 +20,7 @@ import { StepperFormComponent } from './stepper-form/stepper-form.component';
 import { StepFormComponent } from './stepper-form/step-form/step-form.component';
 import { AccordianComponent } from './accordian/accordian.component';
 import { AccordianTableComponent } from './accordian-table/accordian-table.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: JobsComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'stepform', component: StepperFormComponent },
   { path: 'accordian', component: AccordianComponent },
   { path: 'accordianTable', component: AccordianTableComponent },
+  { path: 'login', component: LoginComponent },
   { path: ':id', component: UpdateJobsComponent },
 
 ];
@@ -52,6 +54,7 @@ const routes: Routes = [
     StepFormComponent,
     AccordianComponent,
     AccordianTableComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

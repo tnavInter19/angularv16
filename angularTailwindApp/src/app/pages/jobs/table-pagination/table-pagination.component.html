@@ -1,4 +1,3 @@
-
 <div class="p-4">
  <table class="w-full border-collapse">
    <thead>
@@ -17,26 +16,71 @@
    </tbody>
  </table>
 
+ <!-- Custom Pagination Component -->
  <div class="flex justify-center mt-4">
   <button
     [disabled]="currentPage === 1"
     (click)="goToPage(currentPage - 1)"
-    class="px-3 py-2 mr-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    class="px-3 py-2 mr-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
   >
-    Previous
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M15.5 3.25L8.5 12L15.5 20.75"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
   </button>
+  <ng-container *ngIf="currentPage > 3">
+    <button
+      (click)="goToPage(1)"
+      class="px-3 py-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-black mx-1"
+    >
+      1
+    </button>
+    <span class="px-3 py-2">...</span>
+  </ng-container>
+  <ng-container *ngFor="let page of getVisiblePages()">
+   <button
+     (click)="goToPage(page)"
+     [class.text-white]="page === currentPage"
+     [class.bg-black]="page === currentPage" 
+     class="px-3 py-2 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-black mx-1"
+   >
+     {{ page }}
+   </button>
+ </ng-container>
+  <ng-container *ngIf="currentPage <= totalPages - 3">
+    <span class="px-3 py-2">...</span>
+    <button
+      (click)="goToPage(totalPages)"
+      class="px-3 py-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-black mx-1"
+    >
+      {{ totalPages }}
+    </button>
+  </ng-container>
   <button
     [disabled]="currentPage === totalPages"
     (click)="goToPage(currentPage + 1)"
-    class="px-3 py-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    class="px-3 py-2 bg-white border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
   >
-    Next
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M8.5 20.75L15.5 12L8.5 3.25"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
   </button>
 </div>
 
 <div class="flex items-center justify-center mt-4">
   <label class="mr-2">Items per page:</label>
-  <select [(ngModel)]="itemsPerPage" class="py-2 px-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <select [(ngModel)]="itemsPerPage" class="py-2 pr-8 border rounded appearance-none focus:outline-none focus:ring-2 focus:ring-black bg-white bg-no-repeat bg-right">
     <option [ngValue]="5">5</option>
     <option [ngValue]="10">10</option>
     <option [ngValue]="20">20</option>
@@ -44,7 +88,3 @@
   </select>
 </div>
 </div>
-
-
-
-
