@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { JobsService } from './jobs.service';
 import { UpdateJobsComponent } from './update-jobs/update-jobs.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -12,7 +12,7 @@ import {Dialog, DIALOG_DATA, DialogRef} from '@angular/cdk/dialog';
 export class JobsComponent implements OnInit {
 
  jobList:any = [];
-
+ isSlideOverOpen = true;
  constructor(private _jobService: JobsService,private dialog: Dialog){}
 
  ngOnInit(): void {
@@ -71,5 +71,23 @@ export class JobsComponent implements OnInit {
     console.log(data);
     console.log('Dialog closed!');
   });
+}
+
+
+
+// HostListener to handle clicks outside the modal
+@HostListener('document:click', ['$event.target'])
+onClickOutside(targetElement: HTMLElement) {
+  if (this.isSlideOverOpen && !targetElement.closest('.slide-over-content')) {
+    this.closeSlideOver();
+  }
+}
+
+toggleSlideOver() {
+  this.isSlideOverOpen = !this.isSlideOverOpen;
+}
+
+closeSlideOver() {
+  this.isSlideOverOpen = false;
 }
 }
