@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { JobsService } from './jobs.service';
 import { UpdateJobsComponent } from './update-jobs/update-jobs.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -12,8 +12,8 @@ import {Dialog, DIALOG_DATA, DialogRef} from '@angular/cdk/dialog';
 export class JobsComponent implements OnInit {
 
  jobList:any = [];
- isSlideOverOpen = true;
- constructor(private _jobService: JobsService,private dialog: Dialog){}
+ isSlideOverOpen = false;
+ constructor(private _jobService: JobsService,private dialog: Dialog,private elementRef: ElementRef){}
 
  ngOnInit(): void {
    this.listJobs();
@@ -75,19 +75,23 @@ export class JobsComponent implements OnInit {
 
 
 
-// HostListener to handle clicks outside the modal
-@HostListener('document:click', ['$event.target'])
-onClickOutside(targetElement: HTMLElement) {
-  if (this.isSlideOverOpen && !targetElement.closest('.slide-over-content')) {
-    this.closeSlideOver();
-  }
-}
+  // Method to open the slide-over modal
+  openSlideOver(event: Event) {
+   event.stopPropagation();
+   this.isSlideOverOpen = true;
+ }
 
-toggleSlideOver() {
-  this.isSlideOverOpen = !this.isSlideOverOpen;
-}
+ // Method to close the slide-over modal
+ closeSlideOver() {
+   this.isSlideOverOpen = false;
+ }
 
-closeSlideOver() {
-  this.isSlideOverOpen = false;
-}
+ // HostListener to handle clicks outside the modal and close it
+ @HostListener('document:click', ['$event.target'])
+ onClickOutside(targetElement: HTMLElement) {
+   const clickedInsideButton = this.elementRef.nativeElement.contains(targetElement);
+   if (this.isSlideOverOpen && !clickedInsideButton && !targetElement.closest('.slide-over-content')) {
+     this.closeSlideOver();
+   }
+ }
 }
