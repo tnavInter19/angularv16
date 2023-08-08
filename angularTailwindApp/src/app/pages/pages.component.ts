@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-pages',
@@ -8,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PagesComponent implements OnInit {
  isSidebarOpen = false; // Set the initial state of the sidebar to open.
+ activeLinkLabel: string = '';
+
  links = [
   {
     label: 'Dashboard',
@@ -24,14 +27,35 @@ export class PagesComponent implements OnInit {
   // Add other links similarly
 ];
 
-constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  
+}
+
+
+ngOnInit(): void {
+ this.updateActiveLink();
+  // Subscribe to router events to update activeRouteLabel when navigation ends
+  this.router.events
+  .pipe(filter(event => event instanceof NavigationEnd))
+  .subscribe(() => {
+    this.updateActiveLink();
+  });
+}
+
 
 isActive(route: string): boolean {
   return this.router.isActive(route, false);
 }
 
- ngOnInit(): void {
+ 
+updateActiveLink() {
+ const activeLink = this.links.find(link => link.route === this.router.url);
+ if (activeLink) {
+   this.activeLinkLabel = activeLink.label;
+ } else {
+   this.activeLinkLabel = '';
  }
+}
 
  toggleSidebar(): void {
    this.isSidebarOpen = !this.isSidebarOpen;
