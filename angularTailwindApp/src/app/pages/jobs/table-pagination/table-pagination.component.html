@@ -1,96 +1,106 @@
 <div class="p-4">
- <table class="w-full border-collapse">
-   <thead>
-     <tr>
-       <th class="px-4 py-2 bg-gray-200 text-left">ID</th>
-       <th class="px-4 py-2 bg-gray-200 text-left">Name</th>
-       <th class="px-4 py-2 bg-gray-200 text-left">Age</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr *ngFor="let person of paginatedPeople">
-       <td class="border px-4 py-2">{{ person.id }}</td>
-       <td class="border px-4 py-2">{{ person.name }}</td>
-       <td class="border px-4 py-2">{{ person.age }}</td>
-     </tr>
-   </tbody>
- </table>
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th class="px-4 py-2 bg-gray-200 text-left">ID</th>
+        <th class="px-4 py-2 bg-gray-200 text-left">Name</th>
+        <th class="px-4 py-2 bg-gray-200 text-left">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of paginatedPeople">
+        <td class="border px-4 py-2">{{ person.id }}</td>
+        <td class="border px-4 py-2">{{ person.name }}</td>
+        <td class="border px-4 py-2">{{ person.age }}</td>
+      </tr>
+    </tbody>
+  </table>
 
- <!-- Custom Pagination Component -->
- <div class="flex flex-col md:flex-row items-center justify-between mt-4">
- <div class="flex justify-start md:justify-center mb-2 md:mb-0">
-  <button
-    [disabled]="currentPage === 1"
-    (click)="goToPage(currentPage - 1)"
-    class="px-2 py-1 mr-1 bg-white border-none focus:outline-none focus:ring-2 focus:ring-black"
-  >
-    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M15.5 3.25L8.5 12L15.5 20.75"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </button>
-  <ng-container *ngIf="currentPage > 3">
-    <button
-      (click)="goToPage(1)"
-      class="px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
-    >
-      1
-    </button>
-    <span class="px-2 py-1">...</span>
-  </ng-container>
-  <ng-container *ngFor="let page of getVisiblePages()">
-   <button
-     (click)="goToPage(page)"
-     [class.text-white]="page === currentPage"
-     [class.bg-black]="page === currentPage" 
-     class="px-2 py-1 focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
-   >
-     {{ page }}
-   </button>
- </ng-container>
-  <ng-container *ngIf="currentPage <= totalPages - 3">
-    <span class="px-2 py-1">...</span>
-    <button
-      (click)="goToPage(totalPages)"
-      class="px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
-    >
-      {{ totalPages }}
-    </button>
-  </ng-container>
-  <button
-    [disabled]="currentPage === totalPages"
-    (click)="goToPage(currentPage + 1)"
-    class="px-2 py-1 bg-white border-none focus:outline-none focus:ring-2 focus:ring-black"
-  >
-    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M8.5 20.75L15.5 12L8.5 3.25"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </button>
-</div>
+  <!-- Custom Pagination Component -->
+  <div class="flex flex-col md:flex-row items-center justify-between mt-4">
+    <div class="flex justify-start md:justify-center mb-2 md:mb-0">
+      <button
+        [disabled]="currentPage === 1"
+        (click)="goToPage(currentPage - 1)"
+        class="px-2 py-1 mr-1 bg-white border-none focus:outline-none focus:ring-2 focus:ring-black"
+      >
+        <svg
+          class="w-3 h-3"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.5 3.25L8.5 12L15.5 20.75"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <ng-container *ngIf="currentPage > 3">
+        <button
+          (click)="goToPage(1)"
+          class="px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
+        >
+          1
+        </button>
+        <span class="px-2 py-1">...</span>
+      </ng-container>
+      <ng-container *ngFor="let page of getVisiblePages()">
+        <button
+          (click)="goToPage(page)"
+          [class.text-white]="page === currentPage"
+          [class.bg-black]="page === currentPage"
+          class="px-2 py-1 focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+      <ng-container *ngIf="currentPage <= totalPages - 3">
+        <span class="px-2 py-1">...</span>
+        <button
+          (click)="goToPage(totalPages)"
+          class="px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
+        >
+          {{ totalPages }}
+        </button>
+      </ng-container>
+      <button
+        [disabled]="currentPage === totalPages"
+        (click)="goToPage(currentPage + 1)"
+        class="px-2 py-1 bg-white border-none focus:outline-none focus:ring-2 focus:ring-black"
+      >
+        <svg
+          class="w-3 h-3"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8.5 20.75L15.5 12L8.5 3.25"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
 
-
-
-<div class="flex justify-end md:justify-center items-center">
- <label class="mr-2 align-middle">Items per page:</label>
- <select [(ngModel)]="itemsPerPage"
-         (change)="resetPage()"
-         class="px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-black bg-white bg-no-repeat bg-right pr-6"
- >
-   <option [ngValue]="5">5</option>
-   <option [ngValue]="10">10</option>
-   <option [ngValue]="20">20</option>
-   <option [ngValue]="50">50</option>
- </select>
-</div>
+    <div class="flex justify-end md:justify-center items-center">
+      <label class="mr-2 align-middle">Items per page:</label>
+      <select
+        [(ngModel)]="itemsPerPage"
+        (change)="resetPage()"
+        class="px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-black bg-white bg-no-repeat bg-right pr-6"
+      >
+        <option [ngValue]="5">5</option>
+        <option [ngValue]="10">10</option>
+        <option [ngValue]="20">20</option>
+        <option [ngValue]="50">50</option>
+      </select>
+    </div>
+  </div>
 </div>
