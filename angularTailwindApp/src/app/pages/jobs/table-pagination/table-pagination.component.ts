@@ -38,6 +38,10 @@ export class TablePaginationComponent {
    return this.people.slice(startIndex, startIndex + this.itemsPerPage);
  }
 
+ resetPage() {
+  this.currentPage = 1; // Reset current page to 1
+}
+
  goToPage(page: number) {
    if (page >= 1 && page <= this.totalPages) {
      this.currentPage = page;
