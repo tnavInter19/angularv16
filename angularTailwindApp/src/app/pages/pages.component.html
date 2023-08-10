@@ -1,8 +1,12 @@
-
-<div >
- <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
- <div *ngIf="isSidebarOpen" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
-   <!--
+<div class="bg-white dark:bg-black">
+  <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+  <div
+    *ngIf="isSidebarOpen"
+    class="relative z-50 lg:hidden"
+    role="dialog"
+    aria-modal="true"
+  >
+    <!--
      Off-canvas menu backdrop, show/hide based on off-canvas menu state.
 
      Entering: "transition-opacity ease-linear duration-300"
@@ -12,10 +16,16 @@
        From: "opacity-100"
        To: "opacity-0"
    -->
-   <div class="fixed inset-0 bg-gray-900/80"></div>
+    <div class="fixed inset-0 bg-gray-900/80"></div>
 
-   <div class="fixed inset-0 flex"  [ngClass]="{'-translate-x-full': !isSidebarOpen, 'translate-x-0': isSidebarOpen}">
-     <!--
+    <div
+      class="fixed inset-0 flex"
+      [ngClass]="{
+        '-translate-x-full': !isSidebarOpen,
+        'translate-x-0': isSidebarOpen
+      }"
+    >
+      <!--
        Off-canvas menu, show/hide based on off-canvas menu state.
 
        Entering: "transition ease-in-out duration-300 transform"
@@ -25,8 +35,8 @@
          From: "translate-x-0"
          To: "-translate-x-full"
      -->
-     <div class="relative mr-16 flex w-full max-w-xs flex-1">
-       <!--
+      <div class="relative mr-16 flex w-full max-w-xs flex-1">
+        <!--
          Close button, show/hide based on off-canvas menu state.
 
          Entering: "ease-in-out duration-300"
@@ -36,170 +46,308 @@
            From: "opacity-100"
            To: "opacity-0"
        -->
-       <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-         <button type="button"  [ngClass]="{'opacity-0': !isSidebarOpen, 'opacity-100': isSidebarOpen}" class="-m-2.5 p-2.5" (click)="toggleSidebar()">
-           <span class="sr-only">Close sidebar</span>
-           <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-           </svg>
-         </button>
-       </div>
+        <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+          <button
+            type="button"
+            [ngClass]="{
+              'opacity-0': !isSidebarOpen,
+              'opacity-100': isSidebarOpen
+            }"
+            class="-m-2.5 p-2.5"
+            (click)="toggleSidebar()"
+          >
+            <span class="sr-only">Close sidebar</span>
+            <svg
+              class="h-6 w-6 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
 
-       <!-- Sidebar component, swap this element with another sidebar if you like -->
-       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
-         <div class="flex h-16 shrink-0 items-center">
-           <img class="w-48"  src="/assets/images/interspark.jpg" alt="Your Company">
-         </div>
-         <nav class="flex flex-1 flex-col">
-           <ul role="list" class="flex flex-1 flex-col gap-y-7">
-             <li>
+        <!-- Sidebar component, swap this element with another sidebar if you like -->
+        <div
+          class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2"
+        >
+          <div class="flex h-16 shrink-0 items-center">
+            <img
+              class="w-48"
+              src="/assets/images/interspark.jpg"
+              alt="Your Company"
+            />
+          </div>
+          <nav class="flex flex-1 flex-col">
+            <ul role="list" class="flex flex-1 flex-col gap-y-7">
+              <li>
+                <ng-container *ngFor="let link of links">
+                  <li>
+                    <a
+                      [routerLink]="link.route"
+                      routerLinkActive="bg-gray-50 text-picton-blue"
+                      class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                    >
+                      <svg
+                        [ngClass]="{
+                          'bg-gray-50 text-picton-blue': isActive(link.route)
+                        }"
+                        class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-picton-blue"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path [attr.d]="link.iconPath" />
+                      </svg>
+                      {{ link.label }}
+                    </a>
+                  </li>
+                </ng-container>
+              </li>
+              <li>
+                <div class="text-xs font-semibold leading-6 text-gray-400">
+                  Your teams
+                </div>
+                <ul role="list" class="-mx-2 mt-2 space-y-1">
+                  <li>
+                    <!-- Current: "bg-gray-50 text-picton-blue", Default: "text-gray-700 hover:text-picton-blue hover:bg-gray-50" -->
+                    <a
+                      href="#"
+                      class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                    >
+                      <span
+                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue"
+                        >H</span
+                      >
+                      <span class="truncate">Heroicons</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                    >
+                      <span
+                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue"
+                        >T</span
+                      >
+                      <span class="truncate">Tailwind Labs</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                    >
+                      <span
+                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue"
+                        >W</span
+                      >
+                      <span class="truncate">Workcation</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Static sidebar for desktop -->
+  <div
+    class="hidden  lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
+  >
+    <!-- Sidebar component, swap this element with another sidebar if you like -->
+    <div
+      class="flex dark:bg-black grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6"
+    >
+      <div class="flex h-16 shrink-0 items-center justify-between">
+        <img
+          class="w-48"
+          src="/assets/images/interspark.jpg"
+          alt="Your Company"
+        />
+        <button
+          type="button"
+          aria-label="Switch to light theme"
+          class="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+          fdprocessedid="o5ym6"
+          (click)="toggleDarkMode()"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            class="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600"
+          >
+            <path
+              d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z"
+            ></path>
+            <path
+              d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061"
+              fill="none"
+            ></path>
+          </svg>
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            class="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transitiona dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500"
+          >
+            <path
+              d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-1 flex-col">
+        <ul role="list" class="flex flex-1 flex-col gap-y-7">
+          <li>
+            <ul role="list" class="-mx-2 space-y-1">
               <ng-container *ngFor="let link of links">
-               <li>
-                 <a
-                   [routerLink]="link.route"
-                   routerLinkActive="bg-gray-50 text-picton-blue"
-                   class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                 >
-                   <svg
-                   [ngClass]="{'bg-gray-50 text-picton-blue': isActive(link.route)}"
-                     class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-picton-blue"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke-width="1.5"
-                     stroke="currentColor"
-                     aria-hidden="true"
-                   >
-                     <path [attr.d]="link.iconPath" />
-                   </svg>
-                   {{ link.label }}
-                 </a>
-               </li>
-             </ng-container>
-             </li>
-             <li>
-               <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
-               <ul role="list" class="-mx-2 mt-2 space-y-1">
-                 <li>
-                   <!-- Current: "bg-gray-50 text-picton-blue", Default: "text-gray-700 hover:text-picton-blue hover:bg-gray-50" -->
-                   <a href="#" class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                     <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue">H</span>
-                     <span class="truncate">Heroicons</span>
-                   </a>
-                 </li>
-                 <li>
-                   <a href="#" class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                     <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue">T</span>
-                     <span class="truncate">Tailwind Labs</span>
-                   </a>
-                 </li>
-                 <li>
-                   <a href="#" class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                     <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue">W</span>
-                     <span class="truncate">Workcation</span>
-                   </a>
-                 </li>
-               </ul>
-             </li>
-           </ul>
-         </nav>
-       </div>
-     </div>
-   </div>
- </div>
+                <li>
+                  <a
+                    [routerLink]="link.route"
+                    routerLinkActive="bg-gray-50 text-picton-blue"
+                    class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                  >
+                    <svg
+                      [ngClass]="{
+                        'bg-gray-50 text-picton-blue': isActive(link.route)
+                      }"
+                      class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-picton-blue"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path [attr.d]="link.iconPath" />
+                    </svg>
+                    {{ link.label }}
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+          <li>
+            <div class="text-xs font-semibold leading-6 text-gray-400">
+              Your teams
+            </div>
+            <ul role="list" class="-mx-2 mt-2 space-y-1">
+              <li>
+                <!-- Current: "bg-gray-50 text-picton-blue", Default: "text-gray-700 hover:text-picton-blue hover:bg-gray-50" -->
+                <a
+                  href="#"
+                  class="text-gray-700 dark:text-white dark:hover:text-black hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                >
+                  <span
+                    class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue"
+                    >H</span
+                  >
+                  <span class="truncate">Heroicons</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                >
+                  <span
+                    class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue"
+                    >T</span
+                  >
+                  <span class="truncate">Tailwind Labs</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                >
+                  <span
+                    class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue"
+                    >W</span
+                  >
+                  <span class="truncate">Workcation</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="-mx-6 mt-auto">
+            <a
+              href="#"
+              class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+            >
+              <img
+                class="h-8 w-8 rounded-full bg-gray-50"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+              <span class="sr-only">Your profile</span>
+              <span aria-hidden="true">Tom Cook</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
- <!-- Static sidebar for desktop -->
- <div  class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-   <!-- Sidebar component, swap this element with another sidebar if you like -->
-   <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
-     <div class="flex h-16 shrink-0 items-center justify-between">
-       <img class=" w-48"  src="/assets/images/interspark.jpg" alt="Your Company">
-     </div>
-     <nav class="flex flex-1 flex-col">
-       <ul role="list" class="flex flex-1 flex-col gap-y-7">
-         <li>
-          <ul role="list" class="-mx-2 space-y-1">
-           <ng-container *ngFor="let link of links">
-             <li>
-               <a
-                 [routerLink]="link.route"
-                 routerLinkActive="bg-gray-50 text-picton-blue"
-                 class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-               >
-                 <svg
-                 [ngClass]="{'bg-gray-50 text-picton-blue': isActive(link.route)}"
-                   class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-picton-blue"
-                   fill="none"
-                   viewBox="0 0 24 24"
-                   stroke-width="1.5"
-                   stroke="currentColor"
-                   aria-hidden="true"
-                 >
-                   <path [attr.d]="link.iconPath" />
-                 </svg>
-                 {{ link.label }}
-               </a>
-             </li>
-           </ng-container>
-         </ul>
-         
-         </li>
-         <li>
-           <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
-           <ul role="list" class="-mx-2 mt-2 space-y-1">
-             <li>
-               <!-- Current: "bg-gray-50 text-picton-blue", Default: "text-gray-700 hover:text-picton-blue hover:bg-gray-50" -->
-               <a href="#" class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                 <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue">H</span>
-                 <span class="truncate">Heroicons</span>
-               </a>
-             </li>
-             <li>
-               <a href="#" class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                 <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue">T</span>
-                 <span class="truncate">Tailwind Labs</span>
-               </a>
-             </li>
-             <li>
-               <a href="#" class="text-gray-700 hover:text-picton-blue hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                 <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white text-gray-400 border-gray-200 group-hover:border-picton-blue group-hover:text-picton-blue">W</span>
-                 <span class="truncate">Workcation</span>
-               </a>
-             </li>
-           </ul>
-         </li>
-         <li class="-mx-6 mt-auto">
-           <a href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">
-             <img class="h-8 w-8 rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-             <span class="sr-only">Your profile</span>
-             <span aria-hidden="true">Tom Cook</span>
-           </a>
-         </li>
-       </ul>
-     </nav>
-   </div>
- </div>
+  <div
+    class="sticky top-0 z-40 flex items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden"
+  >
+    <button
+      (click)="toggleSidebar()"
+      type="button"
+      class="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+    >
+      <span class="sr-only">Open sidebar</span>
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        />
+      </svg>
+    </button>
+    <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">
+      {{ activeLinkLabel }}
+    </div>
+    <a href="#">
+      <span class="sr-only">Your profile</span>
+      <img
+        class="h-8 w-8 rounded-full bg-gray-50"
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+        alt=""
+      />
+    </a>
+  </div>
 
- <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-   <button (click)="toggleSidebar()" type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden">
-     <span class="sr-only">Open sidebar</span>
-     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-     </svg>
-   </button>
-   <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">{{activeLinkLabel}}</div>
-   <a href="#">
-     <span class="sr-only">Your profile</span>
-     <img class="h-8 w-8 rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-   </a>
- </div>
-
- <main class="py-10 lg:pl-72">
-   <div class="px-4 sm:px-6 lg:px-8">
-    <router-outlet></router-outlet>
-   </div>
- </main>
+  <main class="py-10 lg:pl-72">
+    <div class="px-4 sm:px-6 lg:px-8">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
 </div>
-
-
-   
-

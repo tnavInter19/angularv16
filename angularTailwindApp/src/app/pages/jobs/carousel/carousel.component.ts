@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-carousels',
+  selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
@@ -14,26 +14,12 @@ export class CarouselComponent implements OnInit {
   { src: 'https://images7.alphacoders.com/421/421296.jpg', alt: 'Slide 5' }
 ];
 
- activeIndex = 0; // Active slide index
+ activeIndex = 2; // Active slide index
 
  constructor() { }
 
  ngOnInit(): void {
  }
 
- // Navigate to the previous slide
- prevSlide(): void {
-   this.activeIndex = (this.activeIndex - 1 + 5) % 5;
- }
-
- // Navigate to the next slide
- nextSlide(): void {
-   this.activeIndex = (this.activeIndex + 1) % 5;
- }
-
- // Set the active slide index
- setActiveSlide(index: number): void {
-   this.activeIndex = index;
- }
 }
 

@@ -1,30 +1,41 @@
-import { Component, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
-import { CarouselItemComponent } from './carousel-item/carousel-item.component'; // Create a CarouselItemComponent if it doesn't exist
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-carousel',
-  template: `
-    <div class="carousel relative">
-      <div class="carousel-inner flex transition-transform duration-300 ease-out" [style.transform]="transform">
-        <ng-content></ng-content>
-      </div>
-    </div>
-  `,
+  selector: 'app-carousels',
+  templateUrl: './carousel.component.html',
+  styleUrls: ['./carousel.component.scss'],
 })
-export class CarouselComponent implements AfterContentInit {
-  @ContentChildren(CarouselItemComponent) items!: QueryList<CarouselItemComponent>;
-  private currentIndex = 0;
-  private itemWidth = 100; // Set the desired item width
+export class CarouselComponent implements OnInit {
+  @Input() items!: { src: string; alt: string }[]; // Define input property to receive items
+  @Input() activeIndex: number=0;
 
-  get transform(): string {
-    return `translateX(-${this.currentIndex * this.itemWidth}%)`;
+  private intervalId: any; // Store the interval ID
+
+  constructor() {}
+
+  ngOnInit(): void {
+    this.startAutoSwitch(); // Start automatic switching on component initialization
   }
 
-  ngAfterContentInit() {
-    this.items.changes.subscribe(() => {
-      this.itemWidth = 100 / this.items.length;
-    });
+  // Start automatic slide switching
+  startAutoSwitch(): void {
+    this.intervalId = setInterval(() => {
+      this.nextSlide();
+    }, 2000); // Adjust the interval duration (in milliseconds) as needed
+  }
+  // Navigate to the previous slide
+  prevSlide(): void {
+    this.activeIndex =
+      (this.activeIndex - 1 + this.items.length) % this.items.length;
   }
 
-  // Implement navigation methods here (e.g., next(), prev())
+  // Navigate to the next slide
+  nextSlide(): void {
+    this.activeIndex = (this.activeIndex + 1) % this.items.length;
+  }
+
+  // Set the active slide index
+  setActiveSlide(index: number): void {
+    this.activeIndex = index;
+  }
 }
