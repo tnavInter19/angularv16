@@ -4,7 +4,7 @@ module.exports = {
    enabled: true,
    content: ['./src/**/*.{html,ts}'],
  },
- darkMode: false, // or 'media' or 'class'
+ darkMode: ['class', '[data-mode="dark"]'],
  theme: {
   fontFamily: {
     sans: ['Helvetica Neue', 'Helvetica','Arial','sans-serif']

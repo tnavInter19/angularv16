@@ -21,6 +21,8 @@ import { StepFormComponent } from './stepper-form/step-form/step-form.component'
 import { AccordianComponent } from './accordian/accordian.component';
 import { AccordianTableComponent } from './accordian-table/accordian-table.component';
 import { LoginComponent } from './login/login.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { SharedModuleModule } from '../shared-module/shared-module.module';
 
 const routes: Routes = [
   { path: '', component: JobsComponent },
@@ -34,6 +36,7 @@ const routes: Routes = [
   { path: 'accordian', component: AccordianComponent },
   { path: 'accordianTable', component: AccordianTableComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'carousel', component: CarouselComponent },
   { path: ':id', component: UpdateJobsComponent },
 
 ];
@@ -55,6 +58,7 @@ const routes: Routes = [
     AccordianComponent,
     AccordianTableComponent,
     LoginComponent,
+    CarouselComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +69,7 @@ const routes: Routes = [
     CdkDropListGroup, CdkDropList,
     CdkMenu,
     CdkStepperModule,
+    SharedModuleModule,
     CdkMenuItem,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
