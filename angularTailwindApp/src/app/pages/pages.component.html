@@ -81,7 +81,7 @@
           <div class="flex h-16 shrink-0 items-center">
             <img
               class="w-48"
-              src="/assets/images/intersparks.jpg"
+              [src]="!isDarkMode ? '/assets/images/intersparks.jpg' : '/assets/images/blackinterpark.jpg'"
               alt="Your Company"
             />
           </div>
@@ -175,7 +175,7 @@
       <div class="flex h-16 shrink-0 items-center justify-between">
         <img
           class="w-48"
-          src="/assets/images/intersparks.jpg"
+          [src]="isDarkMode ?  '/assets/images/blackinterpark.jpg' :'/assets/images/intersparks.jpg'"
           alt="Your Company"
         />
         <button

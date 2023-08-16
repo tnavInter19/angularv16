@@ -10,7 +10,7 @@ import { filter } from 'rxjs';
 export class PagesComponent implements OnInit {
  isSidebarOpen = false; // Set the initial state of the sidebar to open.
  activeLinkLabel: string = '';
- isDarkMode = true;
+ isDarkMode = false;
  links = [
   {
     label: 'Dashboard',
