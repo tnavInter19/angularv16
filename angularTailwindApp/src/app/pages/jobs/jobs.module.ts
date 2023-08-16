@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
 import { DateComponent } from './date/date.component';
+import { DarkFormComponent } from './dark-form/dark-form.component';
 
 const routes: Routes = [
   { path: '', component: JobsComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'accordianTable', component: AccordianTableComponent },
   { path: 'login', component: LoginComponent },
   {path:'date',component:DateComponent},
+  {path:'darkform',component:DarkFormComponent},
   { path: 'carousel', component: CarouselComponent },
   { path: ':id', component: UpdateJobsComponent },
 
@@ -62,6 +64,7 @@ const routes: Routes = [
     LoginComponent,
     CarouselComponent,
     DateComponent,
+    DarkFormComponent,
   ],
   imports: [
     CommonModule,
