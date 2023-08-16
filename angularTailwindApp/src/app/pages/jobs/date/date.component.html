@@ -1,0 +1,9 @@
+<div class="flex items-center justify-center h-full">
+ <form [formGroup]="dateForm">
+   <div class="container mx-auto px-4 py-2 md:py-10">
+    <app-date-picker [datepickerValue]="dateForm.get('datepickerControl')?.value" 
+    (datepickerValueChange)="dateForm.get('datepickerControl')?.setValue($event)">
+   </app-date-picker>
+   </div>
+ </form>
+</div>

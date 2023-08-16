@@ -23,6 +23,7 @@ import { AccordianTableComponent } from './accordian-table/accordian-table.compo
 import { LoginComponent } from './login/login.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
+import { DateComponent } from './date/date.component';
 
 const routes: Routes = [
   { path: '', component: JobsComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'accordian', component: AccordianComponent },
   { path: 'accordianTable', component: AccordianTableComponent },
   { path: 'login', component: LoginComponent },
+  {path:'date',component:DateComponent},
   { path: 'carousel', component: CarouselComponent },
   { path: ':id', component: UpdateJobsComponent },
 
@@ -59,6 +61,7 @@ const routes: Routes = [
     AccordianTableComponent,
     LoginComponent,
     CarouselComponent,
+    DateComponent,
   ],
   imports: [
     CommonModule,
