@@ -1,10 +1,10 @@
 <div class="p-4">
-  <table class="w-full border-collapse">
+  <table class="w-full border-collapse dark:text-white">
     <thead>
       <tr>
-        <th class="px-4 py-2 bg-gray-200 text-left">ID</th>
-        <th class="px-4 py-2 bg-gray-200 text-left">Name</th>
-        <th class="px-4 py-2 bg-gray-200 text-left">Age</th>
+        <th class="px-4 py-2 bg-gray-200 text-left dark:text-black">ID</th>
+        <th class="px-4 py-2 bg-gray-200 text-left dark:text-black">Name</th>
+        <th class="px-4 py-2 bg-gray-200 text-left dark:text-black">Age</th>
       </tr>
     </thead>
     <tbody>
@@ -42,27 +42,29 @@
       <ng-container *ngIf="currentPage > 3">
         <button
           (click)="goToPage(1)"
-          class="px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
+          class="px-2 py-1 bg-white dark:bg-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
         >
           1
         </button>
-        <span class="px-2 py-1">...</span>
+        <span class="px-2 py-1 dark:text-white">...</span>
       </ng-container>
       <ng-container *ngFor="let page of getVisiblePages()">
         <button
           (click)="goToPage(page)"
-          [class.text-white]="page === currentPage"
-          [class.bg-black]="page === currentPage"
-          class="px-2 py-1 focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
+          [ngClass]="{
+           'bg-black text-white dark:bg-white dark:text-black':
+           page === currentPage,
+         }"
+          class="px-2 py-1 focus:outline-none focus:ring-2 dark:text-white  focus:ring-black mx-0.5"
         >
           {{ page }}
         </button>
       </ng-container>
       <ng-container *ngIf="currentPage <= totalPages - 3">
-        <span class="px-2 py-1">...</span>
+        <span class="px-2 py-1 dark:text-white">...</span>
         <button
           (click)="goToPage(totalPages)"
-          class="px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
+          class="px-2 py-1 bg-white dark:bg-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black mx-0.5"
         >
           {{ totalPages }}
         </button>
@@ -70,7 +72,7 @@
       <button
         [disabled]="currentPage === totalPages"
         (click)="goToPage(currentPage + 1)"
-        class="px-2 py-1 bg-white border-none focus:outline-none focus:ring-2 focus:ring-black"
+        class="px-2 py-1 bg-white  border-none focus:outline-none focus:ring-2 focus:ring-black"
       >
         <svg
           class="w-3 h-3"
@@ -90,7 +92,7 @@
     </div>
 
     <div class="flex justify-end md:justify-center items-center">
-      <label class="mr-2 align-middle">Items per page:</label>
+      <label class="mr-2 align-middle dark:text-white">Items per page:</label>
       <select
         [(ngModel)]="itemsPerPage"
         (change)="resetPage()"
